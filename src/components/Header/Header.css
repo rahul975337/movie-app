@@ -1,0 +1,15 @@
+.header {
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
+}
+
+.app_name {
+  font-size: 30px;
+  background: -webkit-linear-gradient(#d21ac8, #8835e1);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
