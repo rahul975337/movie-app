@@ -18,5 +18,6 @@ code {
   --primary-background: #151618;
   --secondary-background: #25282c;
   --text-color: #ffff;
-  --highlight-color: #bd24cf;
+  --highlight-color-purple: #c521ce;
+  --highlight-color-blue: #7f37e5;
 }

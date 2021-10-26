@@ -9,7 +9,10 @@
 
 .app_name {
   font-size: 30px;
-  background: -webkit-linear-gradient(#d21ac8, #8835e1);
+  background: -webkit-linear-gradient(
+    var(--highlight-color-purple),
+    var(--highlight-color-blue)
+  );
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }

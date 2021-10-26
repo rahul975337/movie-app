@@ -11,7 +11,15 @@ function MovieComponent(props) {
       <img src={Poster} alt={Title} className="image" />
       <div className="info_row">
         <AiOutlineHeart className="fav" />
-        <div className="detail">Read More</div>
+        <div
+          className="detail"
+          onClick={() => {
+            props.onMovieSelect(imdbID);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          Read More
+        </div>
       </div>
     </div>
   );

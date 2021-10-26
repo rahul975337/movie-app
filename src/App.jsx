@@ -1,37 +1,76 @@
 import "./App.css";
 
-import { Header, MovieComponent, SearchBox } from "./components";
-import React, { useState } from "react";
+import { Header, MovieComponent, MovieInfo, SearchBox } from "./components";
+import React, { useEffect, useState } from "react";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Axios from "axios";
-import ModalPage from "./components/Modal/Modal";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import MovieList from "./components/MovieComponent/MovieList";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-const movie = {
-  Title: "Star Wars",
-  Year: "1977",
-  imdbID: "tt0076759",
-  Type: "movie",
-  Poster:
-    "https://m.media-amazon.com/images/M/MV5BYmU1NDRjNDgtMzhiMi00NjZmLTg5NGItZDNiZjU5NTU4OTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-};
 function App() {
-  return (
-    <div className="App">
-      <div className="header_container">
-        <Header />
-        <SearchBox />
-      </div>
-      <div className="divider" />
+  const [searchQuery, setSearchQuery] = useState("");
+  const [type, setType] = useState("");
+  const [movieList, setMovieList] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState();
+  const [timeoutId, setTimeoutId] = useState();
+  // fetch data using axios
 
-      <div className="movie_list_container">
-        <MovieComponent movie={movie} />
-        <MovieComponent movie={movie} />
-        <MovieComponent movie={movie} />
-        <MovieComponent movie={movie} />
-        <MovieComponent movie={movie} />
+  const fetchDataWithSearch = async (searchString, typeQuery) => {
+    const response = await Axios.get(
+      `https://www.omdbapi.com/?type=${typeQuery}&s=${searchString}&apikey=${process.env.REACT_APP_API_KEY}`
+    );
+    setMovieList(response.data.Search);
+  };
+  const onTextChange = (e) => {
+    setSelectedMovie("");
+    clearTimeout(timeoutId);
+    setSearchQuery(e.target.value);
+    const timeout = setTimeout(
+      () => fetchDataWithSearch(e.target.value, type),
+      400
+    );
+
+    setTimeoutId(timeout);
+  };
+  const onTypeChange = (e) => {
+    setSelectedMovie("");
+    fetchDataWithSearch(searchQuery, e.target.value);
+    setType(e.target.value);
+  };
+  return (
+    <Router>
+      <div className="App">
+        <HeaderContainer
+          searchQuery={searchQuery}
+          onTextChange={onTextChange}
+          onTypeChange={onTypeChange}
+        />
+        <div className="divider" />
+        {/* MOVIE INFO */}
+        {selectedMovie && (
+          <MovieInfo
+            selectedMovie={selectedMovie}
+            onMovieSelect={setSelectedMovie}
+          />
+        )}
+        {/* MOVIES LIST */}
+        <MovieList movieList={movieList} setSelectedMovie={setSelectedMovie} />
+        {/* <div className="movie_list_container">
+          {movieList?.length ? (
+            movieList.map((movie, index) => (
+              <MovieComponent
+                key={index}
+                movie={movie}
+                onMovieSelect={setSelectedMovie}
+              />
+            ))
+          ) : (
+            <h1>Search for movies</h1>
+          )}
+        </div> */}
       </div>
-    </div>
+    </Router>
   );
 }
 

@@ -1,0 +1,120 @@
+.movie_info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.main_card {
+  color: #fff;
+  width: 760px;
+  height: 390px;
+  margin: 50px 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 770px;
+  background: var(--highlight-color-blue);
+  background: linear-gradient(
+    45deg,
+    var(--highlight-color-blue) 0%,
+    var(--highlight-color-purple) 69%
+  );
+
+  -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.card_left {
+  width: 80%;
+}
+
+.card_datails {
+  width: 90%;
+  padding: 30px;
+  margin-top: -25px;
+}
+.card_datails h1 {
+  font-size: 30px;
+}
+.card_right img {
+  height: 390px;
+  border-radius: 2px;
+}
+.card_right {
+  border-radius: 2px;
+}
+
+.card_cat {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.released,
+.genre,
+.time {
+  color: fff;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.plot {
+  font-weight: 100;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+a {
+  color: darkcyan;
+  display: block;
+  text-decoration: none;
+}
+
+button {
+  color: var(--text-color);
+  border: none;
+  padding: 20px;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 30px;
+  margin-left: 10px;
+
+  background: var(--highlight-color-purple);
+  background: linear-gradient(
+    90deg,
+    var(--highlight-color-purple) 0%,
+    var(--highlight-color-blue) 58%
+  );
+  border-radius: 12px;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -webkit-transition: 300ms ease-in-out;
+  -o-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+.close {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  background: lightgray;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.8;
+  z-index: 2;
+  margin-top: -50px;
+}
+
+.loading {
+  margin: auto;
+}

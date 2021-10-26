@@ -1,17 +1,29 @@
 import "./SearchBox.css";
 
-import { Filter } from "../index";
 import React from "react";
-import { Search } from "@material-ui/icons";
 
-function SearchBox() {
+function SearchBox(props) {
+  const { searchValue, onTextChange, onTypeChange } = props;
   return (
     <div className="search_box">
       <div className="search_input_field">
-        <input type="text" name="" id="" className="search_text" />
+        <input
+          type="text"
+
+          value={searchValue}
+          className="search_text"
+          onChange={onTextChange}
+        />
         <label className="search_text_label">Search Movie</label>
       </div>
-      <Filter />
+      <select className="select " name="Type" id="cars" onChange={onTypeChange}>
+        <option className="default_select" value="" selected>
+          All Type
+        </option>
+        <option value="movie">Movie</option>
+        <option value="series">Series</option>
+        <option value="episode">Episode</option>
+      </select>
     </div>
   );
 }

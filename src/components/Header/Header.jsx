@@ -1,5 +1,6 @@
 import "./Header.css";
 
+import { Link } from "react-router-dom";
 import React from "react";
 
 const icon =
@@ -7,10 +8,12 @@ const icon =
 function Header() {
   return (
     <div className="header">
-      <div className="app_icon_name">
-        <img src={icon} alt="" className="app_icon" />
-        <p className="app_name">Artium Movie App</p>
-      </div>
+      <Link to="/">
+        <div className="app_icon_name">
+          <img src={icon} alt="" className="app_icon" />
+          <p className="app_name">Artium Theater</p>
+        </div>
+      </Link>
     </div>
   );
 }
