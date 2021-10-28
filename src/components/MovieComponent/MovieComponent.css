@@ -36,8 +36,13 @@
   justify-content: space-around;
 }
 
-.fav {
+.fav,
+.unfav {
   font-size: 25px;
+}
+
+.unfav {
+  color: red;
 }
 
 .detail {

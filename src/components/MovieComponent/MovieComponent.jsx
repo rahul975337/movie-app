@@ -1,16 +1,28 @@
 import "./MovieComponent.css";
 
 import { AiOutlineHeart } from "react-icons/ai";
+import { FaHeart } from "react-icons/fa";
 import React from "react";
 
 function MovieComponent(props) {
-  const { Title, Year, imdbID, Type, Poster } = props.movie;
+  const { Title, imdbID, Poster } = props.movie;
+  const movie = props.movie;
   return (
     <div className="movie_container">
       <span className="movie_name">{Title}</span>
       <img src={Poster} alt={Title} className="image" />
       <div className="info_row">
-        <AiOutlineHeart className="fav" />
+        {props.isFav !== true ? (
+          <AiOutlineHeart
+            className="fav"
+            onClick={() => props.addFavouriteMovie(movie)}
+          />
+        ) : (
+          <FaHeart
+            className="unfav"
+            onClick={() => props.removeFavouriteMovie(movie)}
+          />
+        )}
         <div
           className="detail"
           onClick={() => {

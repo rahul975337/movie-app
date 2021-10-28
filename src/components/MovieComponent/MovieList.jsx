@@ -1,8 +1,20 @@
+import React, { useEffect, useState } from "react";
+
 import { MovieComponent } from "..";
-import React from "react";
 
 function MovieList(props) {
-  const { movieList, setSelectedMovie } = props;
+  const { movieList, setSelectedMovie, addFavouriteMovie } = props;
+  const [favourites, setFavourites] = useState([]);
+  useEffect(() => {
+    const movieFavourites = JSON.parse(
+      localStorage.getItem("react-movie-app-favourites")
+    );
+
+    if (movieFavourites) {
+      setFavourites(movieFavourites);
+    }
+  }, []);
+
   return (
     <div className="movie_list_container">
       {movieList?.length ? (
@@ -10,7 +22,9 @@ function MovieList(props) {
           <MovieComponent
             key={index}
             movie={movie}
+            isFav={favourites.includes(movie)}
             onMovieSelect={setSelectedMovie}
+            addFavouriteMovie={addFavouriteMovie}
           />
         ))
       ) : (

@@ -1,6 +1,6 @@
 import "./SearchBox.css";
 
-import React from "react";
+import { Link } from "react-router-dom";
 
 function SearchBox(props) {
   const { searchValue, onTextChange, onTypeChange } = props;
@@ -9,7 +9,6 @@ function SearchBox(props) {
       <div className="search_input_field">
         <input
           type="text"
-
           value={searchValue}
           className="search_text"
           onChange={onTextChange}
@@ -24,6 +23,9 @@ function SearchBox(props) {
         <option value="series">Series</option>
         <option value="episode">Episode</option>
       </select>
+      <Link to="/favourite">
+        <button className="fav_btn">Favourites</button>
+      </Link>
     </div>
   );
 }
